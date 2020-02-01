@@ -1,17 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
-    <meta charset="ISO-8859-1">
+    <meta charset="UTF-8">
     <title>Spring MVC CRUD</title>
-    <link href="<c:url value="/resources/css/bootstrap.min.css" />"
-          rel="stylesheet">
-    <script src="<c:url value="/resources/js/jquery-1.11.1.min.js" />"></script>
-    <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
-
 </head>
 <body>
 <div class="container">
@@ -20,11 +15,11 @@
             CRUD</h2>
         <div class="panel panel-info">
             <div class="panel-heading">
-                <div class="panel-title">Add User</div>
+                <div class="panel-title">Update user</div>
             </div>
             <div class="panel-body">
                 <%--@elvariable id="user" type="ru.jm.springmvc.model"--%>
-                <form:form action="saveUser" cssClass="form-horizontal"
+                <form:form action="update" cssClass="form-horizontal"
                            method="post" modelAttribute="user">
 
                     <!-- need to associate this data with user id -->
@@ -42,7 +37,10 @@
                         <label for="role" class="col-md-3 control-label">
                             Role</label>
                         <div class="col-md-9">
-                            <form:input path="role" cssClass="form-control" />
+                            <select id="role" name="role">
+                                <option value="user">user</option>
+                                <option value="admin">admin</option>
+                            </select>
                         </div>
                     </div>
 
@@ -72,7 +70,12 @@
                     <div class="form-group">
                         <label for="country" class="col-md-3 control-label">Country</label>
                         <div class="col-md-9">
-                            <form:input path="country" cssClass="form-control" />
+                            <select id="country" name="country">
+                                <option value="Russia">Russia</option>
+                                <option value="Germany">Germany</option>
+                                <option value="Great Britain">Great Britain</option>
+                                <option value="Saudi Arabia">Saudi Arabia</option>
+                            </select>
                         </div>
                     </div>
 
@@ -89,7 +92,6 @@
                             <form:button cssClass="btn btn-primary">Submit</form:button>
                         </div>
                     </div>
-
                 </form:form>
             </div>
         </div>

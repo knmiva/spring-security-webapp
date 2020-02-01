@@ -18,12 +18,16 @@ import ru.jm.springmvc.service.UserService;
 @RequestMapping("/")
 public class UserController {
 
-    @Autowired
     private UserService userService;
+
+    @Autowired
+    public UserController (UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping
     public String listUsers(Model theModel) {
-        List < User > theUsers = userService.getUsers();
+        List<User> theUsers = userService.getUsers();
         theModel.addAttribute("users", theUsers);
         return "list-users";
     }
@@ -37,21 +41,30 @@ public class UserController {
 
     @PostMapping("/saveUser")
     public String saveUser(@ModelAttribute("user") User theUser) {
+
         userService.saveUser(theUser);
         return "redirect:/";
     }
 
     @GetMapping("/updateForm")
-    public String showFormForUpdate(@RequestParam("userId") long theId,
-        Model theModel) {
-        User theUser = userService.getUser(theId);
+    public String showFormForUpdate(@RequestParam("userId") String theId,
+                                    Model theModel) {
+        System.out.println(theId);
+        Long id = Long.parseLong(theId);
+        User theUser = userService.getUser(id);
         theModel.addAttribute("user", theUser);
         return "user-form";
     }
 
     @GetMapping("/delete")
-    public String deleteUser(@RequestParam("userId") long theId) {
+    public String deleteUser(@RequestParam("userId") Long theId) {
         userService.deleteUser(theId);
+        return "redirect:/";
+    }
+
+    @PostMapping("/update")
+    public String updateUser(@ModelAttribute("user") User theUser) {
+        userService.updateUser(theUser);
         return "redirect:/";
     }
 }

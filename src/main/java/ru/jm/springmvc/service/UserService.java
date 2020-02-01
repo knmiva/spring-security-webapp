@@ -6,12 +6,14 @@ import ru.jm.springmvc.model.User;
 
 public interface UserService {
 
-    List < User > getUsers();
+    List<User> getUsers();
 
-    void saveUser(User theUser);
+    User saveUser(User theUser);
 
     User getUser(long theId);
 
-    void deleteUser(long theId);
+    void deleteUser(Long id);
+
+    User updateUser(User theUser);
 
 }

@@ -32,7 +32,7 @@ public class User {
     @Column(name = "mobile", nullable = false)
     private String mobile;
 
-    public User(){
+    public User() {
     }
 
     public long getId() {
